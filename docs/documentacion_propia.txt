@@ -1,0 +1,32 @@
+#ESTRUCUTRA DEL PROYECTO
+
+backend/
+├── app/
+│   ├── core/          # Config global, conexión a DB, seguridad, settings
+│   ├── shared/        # Código compartido entre módulos (utils, exceptions)
+│   ├── modules/       # Cada módulo = un futuro microservicio
+│   │   ├── auth/      # Login, registro, JWT
+│   │   ├── routines/  # Periodización inteligente
+│   │   ├── cv_feedback/  # Análisis de técnica con CV (TU MVP)
+│   │   ├── fitness_bot/  # Coach conversacional
+│   │   └── health/    # Endpoint de salud del sistema
+│   └── main.py        # Punto de entrada, ensambla todos los módulos
+└── tests/
+
+#arquitectura de auth con Supabase
+┌──────────────┐                              ┌──────────────┐
+│   Flutter    │                              │   Supabase   │
+│              │ ─── login con email/pwd ──→  │     Auth     │
+│              │ ←─── JWT token ──────────────│              │
+└──────┬───────┘                              └──────────────┘
+       │
+       │ HTTP request con Authorization: Bearer <JWT>
+       ↓
+┌──────────────┐                              ┌──────────────┐
+│   FastAPI    │ ─── valida JWT ──────────→   │   Supabase   │
+│  (backend)   │                              │     Auth     │
+│              │ ←──── user info ─────────────│              │
+│              │                              │              │
+│              │ ─── queries con service ─→   │  PostgreSQL  │
+│              │     role key                  │              │
+└──────────────┘                              └──────────────┘
