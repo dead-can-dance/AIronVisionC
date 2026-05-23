@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     supabase_url: str = ""
     supabase_anon_key: str = ""
     supabase_service_key: str = ""
-
+    supabase_jwt_secret: str = "" 
     # MinIO
     minio_endpoint: str = ""
     minio_access_key: str = ""

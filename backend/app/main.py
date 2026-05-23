@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.modules.health.router import router as health_router
-
+from app.modules.cv_feedback.router import router as cv_feedback_router
 
 def create_app() -> FastAPI:
     """Factory de la aplicación FastAPI."""
@@ -28,7 +28,7 @@ def create_app() -> FastAPI:
 
     # Registro de routers de módulos
     app.include_router(health_router, prefix=settings.api_v1_prefix)
-
+    app.include_router(cv_feedback_router, prefix=settings.api_v1_prefix)
     @app.get("/")
     async def root() -> dict:
         return {
