@@ -67,3 +67,8 @@ firebase-adminsdk*.json
 
 # Supabase
 .supabase/
+# Modelos de ML descargados (se obtienen vía script setup)
+backend/app/modules/cv_feedback/models/*.task
+backend/app/modules/cv_feedback/models/*.tflite
+backend/app/modules/cv_feedback/models/*.pb
+backend/app/modules/cv_feedback/models/*.onnx

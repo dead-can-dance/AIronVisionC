@@ -19,13 +19,26 @@ class Settings(BaseSettings):
     debug: bool = True
     api_v1_prefix: str = "/api/v1"
 
-    # CORS - dominios permitidos para conectarse al backend
+    # CORS
     cors_origins: list[str] = ["http://localhost:3000", "http://localhost:8080"]
 
-    # Supabase (lo llenaremos en el siguiente paso)
+    # Supabase
     supabase_url: str = ""
     supabase_anon_key: str = ""
     supabase_service_key: str = ""
 
+    # MinIO
+    minio_endpoint: str = ""
+    minio_access_key: str = ""
+    minio_secret_key: str = ""
+    minio_use_ssl: bool = False
+    minio_bucket_videos: str = "aironvision-videos"
+    minio_bucket_data: str = "aironvision-data"
+    minio_region: str = "us-east-1"
+
+    # CV
+    cv_model_path: str = "app/modules/cv_feedback/models/pose_landmarker_heavy.task"
+
 
 settings = Settings()
+
